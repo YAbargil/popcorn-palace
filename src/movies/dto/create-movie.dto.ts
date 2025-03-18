@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsNumber, Min, Max, Matches } from 'class-validator';
+import { IsString, IsInt, IsNumber, Min, Max } from 'class-validator';
 
 export class CreateMovieDto {
   @IsString()
@@ -17,7 +17,7 @@ export class CreateMovieDto {
   rating: number; // Rating out of 10
 
   @IsInt()
-  @Matches(/^\d{4}$/, { message: 'Release year must be a 4-digit number' }) // Ensures exactly 4 digits
+  @Min(1000) // In range 1000-currentYear
   @Max(new Date().getFullYear(), {
     message: 'Release year cannot be in the future',
   }) // Ensures not greater than the current year
