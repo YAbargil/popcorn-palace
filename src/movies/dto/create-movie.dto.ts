@@ -17,7 +17,7 @@ export class CreateMovieDto {
   rating: number; // Rating out of 10
 
   @IsInt()
-  @Min(1000) // In range 1000-currentYear
+  @Min(1000) // In range 1000 - currentYear
   @Max(new Date().getFullYear(), {
     message: 'Release year cannot be in the future',
   }) // Ensures not greater than the current year

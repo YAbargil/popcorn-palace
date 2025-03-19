@@ -9,6 +9,7 @@ import {
   ValidationPipe,
   NotFoundException,
   BadRequestException,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ShowtimesService } from './showtimes.service';
 import { CreateShowtimeDto } from './dto/create-showtime.dto';
@@ -22,8 +23,10 @@ export class ShowtimesController {
     private readonly moviesService: MoviesService,
   ) {}
 
-  @Get(':id')
-  async getShowtimeById(@Param('id') id: number): Promise<Showtime> {
+  @Get(':showtimeId')
+  async getShowtimeById(
+    @Param('showtimeId', ParseIntPipe) id: number,
+  ): Promise<Showtime> {
     const showtime = this.showtimesService.getShowtimeById(id);
 
     if (!showtime) throw new NotFoundException('Showtime not found');
@@ -57,10 +60,10 @@ export class ShowtimesController {
     return this.showtimesService.createShowtime(createShowtimeDto);
   }
 
-  @Post('update/:id')
+  @Post('update/:showtimeId')
   @HttpCode(200)
   async updateShowtime(
-    @Param('id') id: number,
+    @Param('showtimeId', ParseIntPipe) id: number,
     @Body(ValidationPipe) updateDto: CreateShowtimeDto,
   ): Promise<Showtime> {
     const showtime = await this.showtimesService.getShowtimeById(id);
@@ -82,9 +85,11 @@ export class ShowtimesController {
     return this.showtimesService.updateShowtime(id, updateDto);
   }
 
-  @Delete(':id')
+  @Delete(':showtimeId')
   @HttpCode(200)
-  async deleteShowtime(@Param('id') id: number): Promise<Showtime> {
+  async deleteShowtime(
+    @Param('showtimeId', ParseIntPipe) id: number,
+  ): Promise<Showtime> {
     const showtime = await this.showtimesService.getShowtimeById(id);
 
     if (!showtime) throw new NotFoundException('Showtime not found');

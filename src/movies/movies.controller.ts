@@ -42,6 +42,7 @@ export class MoviesController {
   }
 
   @Delete(':movieTitle')
+  @HttpCode(200)
   async deleteMovie(@Param('movieTitle') movieTitle: string): Promise<Movie> {
     const movie = await this.moviesService.getMovieByTitle(movieTitle);
 
