@@ -85,12 +85,21 @@ Once running, the API is available at:
 
 ---
 
-## **🔧 Useful Commands**
+## **Useful Commands**
 
 | Command             | Description               |
 | ------------------- | ------------------------- |
 | `npm run start`     | Start the server          |
 | `npm run start:dev` | Start in development mode |
 | `npm run test`      | Run unit tests            |
-| `npm run test:e2e`  | Run end-to-end tests      |
 | `npm run test:cov`  | Run test coverage         |
+
+---
+
+## **Nice To Haves :)**
+
+- Under the root folder, there is a `postman/` directory that contains a Postman collection file. You can import this file into Postman to quickly access relevant API endpoints and example payloads.
+
+- There is a `draw/` folder under the root directory. This folder contains Excalidraw diagrams. You have two options to view them:
+  - Install the Excalidraw extension in VS Code and open the files directly.
+  - Open the files on the [Excalidraw website](https://excalidraw.com/) to view and edit them online.
