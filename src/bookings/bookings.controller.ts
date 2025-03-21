@@ -9,7 +9,7 @@ import {
 import { BookingsService } from './bookings.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { Booking } from '@prisma/client';
-import { ShowtimesService } from 'src/showtimes/showtimes.service';
+import { ShowtimesService } from '../showtimes/showtimes.service';
 
 @Controller('bookings')
 export class BookingsController {

@@ -81,7 +81,7 @@ npm run start:dev
 ```
 
 Once running, the API is available at:  
-📍 **http://localhost:3000**
+ **http://localhost:3000**
 
 ---
 

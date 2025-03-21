@@ -43,7 +43,7 @@ describe('BookingsService', () => {
       mockPrismaService.booking.findFirst.mockResolvedValue(existingBooking);
 
       const result = await service.isSeatAlreadyBooked(dto);
-      expect(result).toEqual(existingBooking);
+      expect(result).toEqual(true);
       expect(prisma.booking.findFirst).toHaveBeenCalledWith({
         where: { showtimeId: dto.showtimeId, seatNumber: dto.seatNumber },
       });
@@ -59,7 +59,7 @@ describe('BookingsService', () => {
       mockPrismaService.booking.findFirst.mockResolvedValue(null);
 
       const result = await service.isSeatAlreadyBooked(dto);
-      expect(result).toBeNull();
+      await expect(result).toBeFalsy();
       expect(prisma.booking.findFirst).toHaveBeenCalledWith({
         where: { showtimeId: dto.showtimeId, seatNumber: dto.seatNumber },
       });

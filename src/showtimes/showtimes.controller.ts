@@ -14,7 +14,7 @@ import {
 import { ShowtimesService } from './showtimes.service';
 import { CreateShowtimeDto } from './dto/create-showtime.dto';
 import { Showtime } from '@prisma/client';
-import { MoviesService } from 'src/movies/movies.service';
+import { MoviesService } from '../movies/movies.service';
 
 @Controller('showtimes')
 export class ShowtimesController {
@@ -27,7 +27,7 @@ export class ShowtimesController {
   async getShowtimeById(
     @Param('showtimeId', ParseIntPipe) id: number,
   ): Promise<Showtime> {
-    const showtime = this.showtimesService.getShowtimeById(id);
+    const showtime = await this.showtimesService.getShowtimeById(id);
 
     if (!showtime) throw new NotFoundException('Showtime not found');
 
