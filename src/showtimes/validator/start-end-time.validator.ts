@@ -1,20 +1,33 @@
-import { Showtime } from '@prisma/client';
 import {
-  ValidatorConstraint,
-  ValidatorConstraintInterface,
+  registerDecorator,
+  ValidationOptions,
   ValidationArguments,
 } from 'class-validator';
 
-@ValidatorConstraint({ name: 'customStartEndTime', async: false })
-export class CustomStartEndTimeValidator
-  implements ValidatorConstraintInterface
-{
-  validate(startTime: string, args: ValidationArguments) {
-    const endTime = (args.object as { endTime: Showtime['endTime'] }).endTime;
-    return new Date(startTime) < new Date(endTime); // Ensure startTime is before endTime
-  }
+export function IsAfter(
+  property: string,
+  validationOptions?: ValidationOptions,
+) {
+  // Ref: https://www.npmjs.com/package/class-validator/v/0.6.0 - Custom validation decorators
+  return function (object: object, propertyName: string) {
+    registerDecorator({
+      name: 'isAfter',
+      target: object.constructor,
+      propertyName: propertyName,
+      constraints: [property],
+      options: validationOptions,
+      validator: {
+        validate(value: string, args: ValidationArguments) {
+          const [relatedPropertyName] = args.constraints;
+          const relatedValue = (args.object as any)[relatedPropertyName];
 
-  defaultMessage() {
-    return 'Start time must be before end time';
-  }
+          if (!value || !relatedValue) return false;
+          return new Date(value).getTime() > new Date(relatedValue).getTime();
+        },
+        defaultMessage(): string {
+          return `$property must be after ${property}`;
+        },
+      },
+    });
+  };
 }

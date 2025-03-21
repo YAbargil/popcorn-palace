@@ -27,7 +27,8 @@ export class BookingsController {
     );
     if (!showtime) throw new NotFoundException('Showtime nots found');
 
-    const isBooked = this.bookingsService.isSeatAlreadyBooked(createBookingDto);
+    const isBooked =
+      await this.bookingsService.isSeatAlreadyBooked(createBookingDto);
 
     if (isBooked) {
       throw new BadRequestException('Seat is already booked for this showtime');

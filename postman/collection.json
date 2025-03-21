@@ -1,0 +1,99 @@
+{
+  "info": {
+    "name": "Popcorn Palace API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Movies",
+      "item": [
+        {
+          "name": "Get All Movies",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/movies/all"
+          }
+        },
+        {
+          "name": "Create Movie",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/movies",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\":\"Inception\",\"genre\":\"Sci-Fi\",\"duration\":148,\"rating\":8.8,\"releaseYear\":2010}"
+            }
+          }
+        },
+        {
+          "name": "Update Movie",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/movies/update/Inception",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\":\"Inception\",\"genre\":\"Sci-Fi\",\"duration\":150,\"rating\":9.0,\"releaseYear\":2010}"
+            }
+          }
+        },
+        {
+          "name": "Delete Movie",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/movies/Inception"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Showtimes",
+      "item": [
+        {
+          "name": "Get Showtime by ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/showtimes/1"
+          }
+        },
+        {
+          "name": "Create Showtime",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/showtimes",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"movieId\": 1, \"theater\": \"Cinema 1\", \"startTime\": \"2025-02-14T11:00:00Z\", \"endTime\": \"2025-02-14T13:00:00Z\", \"price\": 50.0}"
+            }
+          }
+        },
+        {
+          "name": "Delete Showtime",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:3000/showtimes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:3000/bookings",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"showtimeId\": 1, \"seatNumber\": 15, \"userId\": \"84438967-f68f-4fa0-b620-0f08217e76af\"}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
