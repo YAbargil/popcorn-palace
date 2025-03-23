@@ -1,4 +1,8 @@
-## ** Getting Started**
+## **Getting Started**
+
+### **0. Video**
+
+[Video URL](https://youtu.be/y9_Q4fS81EA)
 
 ### **1. Prerequisites**
 
